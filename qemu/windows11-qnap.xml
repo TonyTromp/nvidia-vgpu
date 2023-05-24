@@ -1,0 +1,151 @@
+
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh edit cbd3ef58-2407-47e7-a16d-2e65072bab62
+or other application using the libvirt API.
+-->
+
+<domain type='kvm'>
+  <name>cbd3ef58-2407-47e7-a16d-2e65072bab62</name>
+  <uuid>cbd3ef58-2407-47e7-a16d-2e65072bab62</uuid>
+  <metadata xmlns:qvs="http://www.qnap.com/schemas/qvs/1.0">
+    <qvs:vm>
+      <qvs:os arch="x86" type="win11"/>
+      <qvs:name>Windows11-virtio</qvs:name>
+      <qvs:auto_start_delay enable="off">60</qvs:auto_start_delay>
+      <qvs:qvm enable="no"/>
+      <qvs:test enable="no"/>
+      <qvs:mom reserved_memory="268435456">0</qvs:mom>
+      <qvs:hdds>
+        <qvs:hdd bus="virtio" dev="vda" index="1" root="/share/FastData128/Windows11-virtio/Windows11-virtio.img"/>
+      </qvs:hdds>
+      <qvs:cdroms>
+        <qvs:cdrom bus="ide" dev="hdb" index="1"/>
+        <qvs:cdrom bus="ide" dev="hda" index="2"/>
+      </qvs:cdroms>
+      <qvs:nics>
+        <qvs:nic bridge="br2" index="1" mac="52:54:00:6f:42:d6" model="e1000" type="bridge"/>
+      </qvs:nics>
+      <qvs:usbs/>
+      <qvs:serialports/>
+      <qvs:meta_path>/share/FastData128/Windows11-virtio/.cbd3ef58-2407-47e7-a16d-2e65072bab62.meta</qvs:meta_path>
+      <qvs:host_cpu>Intel(R) Core(TM) i5-9500T CPU</qvs:host_cpu>
+      <qvs:nas_model>TS-X72</qvs:nas_model>
+      <qvs:snapshot type="external"/>
+      <qvs:graphics>
+        <qvs:graphics autoport="yes" keymap="en-us" listen="127.0.0.1" type="vnc"/>
+      </qvs:graphics>
+      <qvs:videos>
+        <qvs:video>
+          <qvs:model heads="1" ram="65536" type="qxl" vgamem="16384" vram="65536"/>
+        </qvs:video>
+      </qvs:videos>
+    </qvs:vm>
+  </metadata>
+  <memory unit='KiB'>8388608</memory>
+  <currentMemory unit='KiB'>8388608</currentMemory>
+  <memoryBacking>
+    <nosharepages/>
+  </memoryBacking>
+  <vcpu placement='static'>6</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-4.1'>hvm</type>
+    <boot dev='hd'/>
+    <bootmenu enable='no'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+    <kvm>
+      <hidden state='on'/>
+    </kvm>
+  </features>
+  <cpu mode='host-passthrough' check='none'>
+    <topology sockets='1' cores='6' threads='1'/>
+  </cpu>
+  <clock offset='localtime'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/QVS/usr/bin/qemu-system-x86_64</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2' cache='writeback'/>
+      <source file='/share/FastData128/Windows11-virtio/Windows11-virtio.img' startupPolicy='optional'/>
+      <target dev='vda' bus='virtio'/>
+      <serial>cbd3ef58240747e7a101</serial>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/share/iso/virtio-win-0.1.215.iso' startupPolicy='optional'/>
+      <target dev='hda' bus='ide'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/share/iso/Windows 11 x64 - TheWindowsForum.com.iso' startupPolicy='optional'/>
+      <target dev='hdb' bus='ide'/>
+      <readonly/>
+      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
+    </disk>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <controller type='pci' index='0' model='pci-root'/>
+    <controller type='virtio-serial' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+    </controller>
+    <controller type='usb' index='0' model='nec-xhci' ports='6'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
+    </controller>
+    <interface type='bridge'>
+      <mac address='52:54:00:6f:42:d6'/>
+      <source bridge='br2'/>
+      <model type='e1000'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </interface>
+    <channel type='unix'>
+      <source mode='bind' path='/QVS/var/lib/libvirt/qemu/cbd3ef58-2407-47e7-a16d-2e65072bab62.agent'/>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+      <address type='virtio-serial' controller='0' bus='0' port='1'/>
+    </channel>
+    <input type='tablet' bus='usb'>
+      <address type='usb' bus='0' port='1'/>
+    </input>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <tpm model='tpm-tis'>
+      <backend type='emulator' version='2.0'/>
+    </tpm>
+    <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0' keymap='en-us'>
+      <listen type='address' address='0.0.0.0'/>
+    </graphics>
+    <graphics type='spice'>
+      <listen type='none'/>
+    </graphics>
+    <sound model='ich6'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x3'/>
+    </sound>
+    <video>
+      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+    <hostdev mode='subsystem' type='pci' managed='yes'>
+      <source>
+        <address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+      </source>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
+    </hostdev>
+    <memballoon model='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    </memballoon>
+  </devices>
+</domain>
